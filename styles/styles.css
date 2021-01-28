@@ -1,0 +1,23 @@
+p {
+    font-size: 20px;
+}
+
+mark.purple {
+    color: #d886eb;
+    background: none;
+}
+
+mark.green {
+    color: #73ebbb;
+    background: none;
+}
+
+mark.lightblue {
+    color: #79baf2;
+    background: none;
+}
+
+mark.blue {
+    color: #2c62de;
+    background: none;
+}
