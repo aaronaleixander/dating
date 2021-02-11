@@ -13,7 +13,14 @@ $f3 = Base::instance();
 $f3->route('GET /' , function(){
     // fat free - taking the view page and rendering it in the browser
     $view = new Template();
-    echo $view->render('/views/home.html');
+    echo $view->render('views/home.html');
+});
+
+// Dating -- Create Account -- Personal Information
+$f3->route('GET /create1' , function(){
+    // fat free - taking the view page and rendering it in the browser
+    $view = new Template();
+    echo $view->render('views/create1.html');
 });
 
 // Run fat free
