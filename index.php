@@ -31,7 +31,7 @@ $f3->route('GET /create1' , function(){
 // Dating -- Create Account -- Profile
 $f3->route('POST /create2' , function(){
     // fat free - taking the view page and rendering it in the browser
-    var_dump($_POST);
+    //var_dump($_POST);
     if(isset($_POST['fname'])){
         $_SESSION['fname'] = $_POST['fname'];
     } // first name
@@ -58,7 +58,7 @@ $f3->route('POST /create2' , function(){
 
 // Dating -- Create Account -- Interests
 $f3->route('POST /create3' , function($f3){
-    var_dump($_POST);
+    //var_dump($_POST);
 
     if(isset($_POST['email'])){
         $_SESSION['email'] = $_POST['email'];
@@ -97,7 +97,7 @@ $f3->route('POST /summary' , function(){
     $view = new Template();
     echo $view->render('views/summary.html');
 
-    //session_destroy();
+    session_destroy();
 });
 
 // Run fat free
