@@ -50,7 +50,7 @@
             <div class="col-md-12">
                 <label class="font-weight-bolder">In-door Interests</label> <br>
                 <repeat group="{{@indoor}}" value="{{@indo}}">
-                    <div class="form-check form-check-inline">
+                    <div class="form-check form-check-inline col-lg-2">
                         <input class="form-check-input" type="checkbox" name="indoor" value="{{@indo}}">
                         <label class="form-check-label">
                             {{ucfirst(@indo)}}
@@ -60,15 +60,15 @@
                 <br>
                 <label class="font-weight-bolder mt-4">Out-door Interests</label> <br>
                 <repeat group="{{@outdoor}}" value="{{@outdo}}">
-                    <div class="form-check form-check-inline">
+                    <div class="form-check form-check-inline col-sm-2">
                         <input class="form-check-input" type="checkbox" name="outdoor" value="{{@outdo}}">
                         <label class="form-check-label">
                             {{ucfirst(@outdo)}}
                         </label>
                     </div>
                 </repeat>
+                <input class="btn btn-primary mb-5 mt-3 float-right" type="submit" value="Next>"><!-- form | submit | button -->
             </div>
-            <input class="btn btn-primary mb-5 mt-3" type="submit" value="Next>"> <!-- form | submit | button -->
         </div>
     </form>
 </div><!-- Landing section Image -->
