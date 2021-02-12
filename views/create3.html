@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/styles.css">
+    <title>E R 0 S - Welcome</title>
+</head>
+
+<body>
+
+<nav class="navbar nav-pills navbar-expand-lg navbar-light">
+    <a class="navbar-brand ml-5"  href="https://autterback.greenriverdev.com/328/dating/"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center mr-5" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="{{@BASE}}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-black-50" href="">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-black-50" href="create1">Sign Up!</a>
+            </li>
+        </ul>
+        <hr>
+    </div>
+</nav>
+<hr>
+
+<div class="jumbotron jumbotron-fluid mb-5">
+    <div class="container text-center">
+        <h1 class="display-4"><mark class="purple">E </mark> <mark class="green">R </mark> <mark class="lightblue">0 </mark> <mark class="blue">S </mark></h1>
+    </div>
+</div> <!-- JUMBOTRON -->
+
+<div class="container mt-5 border rounded">
+    <h1 class="mt-5">Interests</h1>
+    <hr>
+    <form action="create3" method="post">
+        <div class="form-row">
+            <div class="col-md-12">
+                <label class="font-weight-bolder">In-door Interests</label> <br>
+                <repeat group="{{@indoor}}" value="{{@indo}}">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="indoor" value="{{@indo}}">
+                        <label class="form-check-label">
+                            {{ucfirst(@indo)}}
+                        </label>
+                    </div>
+                </repeat>
+                <br>
+                <label class="font-weight-bolder mt-4">Out-door Interests</label> <br>
+                <repeat group="{{@outdoor}}" value="{{@outdo}}">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="outdoor" value="{{@outdo}}">
+                        <label class="form-check-label">
+                            {{ucfirst(@outdo)}}
+                        </label>
+                    </div>
+                </repeat>
+            </div>
+            <input class="btn btn-primary mb-5 mt-3" type="submit" value="Next>"> <!-- form | submit | button -->
+        </div>
+    </form>
+</div><!-- Landing section Image -->
+</body>
+</html>
