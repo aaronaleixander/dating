@@ -32,12 +32,12 @@ $f3->route('GET /create1' , function(){
 $f3->route('POST /create2' , function(){
     // fat free - taking the view page and rendering it in the browser
     var_dump($_POST);
-    if(isset($_POST['first-name'])){
-        $_SESSION['first-name'] = $_POST['first-name'];
+    if(isset($_POST['fname'])){
+        $_SESSION['fname'] = $_POST['fname'];
     } // first name
 
-    if(isset($_POST['last-name'])){
-        $_SESSION['last-name'] = $_POST['last-name'];
+    if(isset($_POST['lname'])){
+        $_SESSION['lname'] = $_POST['lname'];
     } // last name
 
     if(isset($_POST['age'])){
@@ -48,8 +48,8 @@ $f3->route('POST /create2' , function(){
         $_SESSION['gender'] = $_POST['gender'];
     } //gender
 
-    if(isset($_POST['phone-number'])){
-        $_SESSION['phone-number'] = $_POST['phone-number'];
+    if(isset($_POST['phonenumber'])){
+        $_SESSION['phonenumber'] = $_POST['phonenumber'];
     } // phone number
 
     $view = new Template();
@@ -72,12 +72,32 @@ $f3->route('POST /create3' , function($f3){
         $_SESSION['seeking'] = $_POST['seeking'];
     }
 
+    if(isset($_POST['biography'])){
+        $_SESSION['biography'] = $_POST['biography'];
+    }
+
     // fat free - taking the view page and rendering it in the browser
     // HIVE
     $f3->set('indoor', getIndoorInterests());
     $f3->set('outdoor', getOutdoorInterests());
     $view = new Template();
     echo $view->render('views/create3.html');
+});
+
+// Dating -- Create Account -- Summary
+$f3->route('POST /summary' , function(){
+    // fat free - taking the view page and rendering it in the browser
+
+    //var_dump($_SESSION);
+
+    if(isset($_POST['interests'])){
+        $_SESSION['interests'] = implode(", ",$_POST['interests']);
+    }
+
+    $view = new Template();
+    echo $view->render('views/summary.html');
+
+    //session_destroy();
 });
 
 // Run fat free

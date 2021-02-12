@@ -42,51 +42,42 @@
     </div>
 </div> <!-- JUMBOTRON -->
 
-<div class="container mt-5 border rounded">
-    <h1 class="mt-5">Personal Information</h1>
-    <hr>
-    <form action="create3" method="post">
-        <div class="form-row">
-            <div class="col-md-8">
-                <div class="form-group">
-                    <label for="email" class="font-weight-bolder">Email <br>
-                        <input type="text" class="form-control" id="email" name="email">
-                    </label> <br>
-                </div> <!-- form | email -->
-
-                <div class="form-group">
-                    <label class="font-weight-bolder">State <br>
-                        <input class="form-control" type="text" name="state">
-                    </label> <br>
-                </div> <!-- form | state -->
-
-                <label class="font-weight-bolder">Seeking</label> <br>
-                <div class="form-group form-check">
-                    <input class="form-check-input" type="radio" name="seeking" value="Male">
-                    <label class="form-check-label">
-                        Male
-                    </label>
-                </div>
-
-                <div class="form-group form-check">
-                    <input class="form-check-input" type="radio" name="seeking" value="Female">
-                    <label class="form-check-label" >
-                        Female
-                    </label>
-                </div> <!-- form | radio buttons | seeking -->
+<div class="container border">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="border mt-3">
+                <p class="m-2">Name: {{@SESSION.fname}} {{@SESSION.lname}}</p>
             </div>
-
-            <div class="col-md-4 mt-5 border">
-                <div>
-                    <label class="font-weight-bolder">Biography</label> <br>
-                    <textarea name="biography" id="biography" cols="30" rows="10"></textarea>
-                </div>
-                <input class="btn btn-primary mb-5 float-right" type="submit" value="Next>"> <!-- form | submit | button -->
-            </div> <!-- form | biography -->
-
+            <div class="border">
+                <p class="m-2">Gender: {{@SESSION.gender}}</p>
+            </div>
+            <div class="border">
+                <p class="m-2">Age: {{@SESSION.age}}</p>
+            </div>
+            <div class="border">
+                <p class="m-2">Phone: {{@SESSION.phonenumber}}</p>
+            </div>
+            <div class="border">
+                <p class="m-2">Email: {{@SESSION.email}}</p>
+            </div>
+            <div class="border">
+                <p class="m-2">State: {{@SESSION.state}}</p>
+            </div>
+            <div class="border">
+                <p class="m-2">Seeking: {{@SESSION.seeking}}</p>
+            </div>
+            <div class="border mb-3">
+                <p class="m-2">Interests: {{@SESSION.interests}}</p>
+            </div>
         </div>
 
-    </form>
+        <div class="col-md-6">
+            <div class="border mt-3">
+                <h4>Biography</h4> <br>
+                <p>{{@SESSION.biography}}</p>
+            </div>
+        </div>
+    </div>
 </div><!-- Landing section Image -->
 </body>
 </html>
