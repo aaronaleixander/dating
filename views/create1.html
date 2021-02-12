@@ -50,19 +50,19 @@
             <div class="col-md-8">
                 <div class="form-group">
                     <label for="first-name" class="font-weight-bolder">First Name <br>
-                        <input  type="text" class="form-control" id="first-name" name="fname">
+                        <input type="text" size="75" class="form-control" id="first-name" name="fname">
                     </label> <br>
                 </div> <!-- form | first-name -->
 
                 <div class="form-group">
                     <label class="font-weight-bolder ">Last Name <br>
-                        <input class="form-control" type="text" name="lname">
+                        <input class="form-control" size="75" type="text" name="lname">
                     </label> <br>
                 </div> <!-- form | last-name -->
 
                 <div class="form-group">
                     <label class="font-weight-bolder">Age <br>
-                        <input class="form-control" type="text" name="age">
+                        <input class="form-control" size="75" type="text" name="age">
                     </label> <br>
                 </div> <!-- form | age -->
 
@@ -83,18 +83,19 @@
 
                 <div class="form-group">
                     <label class="font-weight-bolder">Phone Number <br>
-                        <input class="form-control" type="text" name="phonenumber">
+                        <input class="form-control" size="75" type="text" name="phonenumber">
                     </label> <br>
                 </div> <!-- form | phone number -->
             </div>
 
-            <div class="col-md-4 mt-5 border">
-                <div>
-                    <p>Note: All information entered is protected by our privacy policy. Profile information can only be viewed by others with your permission.</p>
+            <div class="col-md-4">
+                <div class="border rounded mr-5 bg-light">
+                    <p class="text-center"> <span class="font-weight-bolder">Note:</span> All information entered is protected by our
+                        <a href="{{@BASE}}}">privacy policy</a>. Profile information can only be viewed by others with your permission.</p>
                 </div>
             </div> <!-- form | privacy notice -->
-
-            <input class="btn btn-primary mb-5 float-right" type="submit" value="Next>"> <!-- form | submit | button -->
+            <br>
+            <input class="btn btn-primary mb-5 mr-0 float-right text-center" type="submit" value="Next>"> <!-- form | submit | button -->
         </div>
     </form>
 </div><!-- Landing section Image -->
