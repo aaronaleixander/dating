@@ -35,3 +35,23 @@ function validEmail($email){
     return true;
 }
 
+/**
+ * This function will check that at least one indoor activity is selected and valid selection from the
+ * array of indoor activities
+ */
+function validIndoor(){
+    $validIndoorActivities = array("tv", "movies", "cooking", "board games", "puzzles", "reading", "playing cards", "video games", "napping", "baking");
+    return true;
+}
+
+/**
+ * This function will check that at least one outdoor activity is selected and valid selection from the
+ * array of outdoor activities
+ */
+function validOutdoor(){
+    $validOutdoorActivities = array("hiking", "biking", "swimming", "collecting", "walking", "climbing", "camping", "athletics", "kayaking", "beaches");
+    return true;
+}
+
+
+

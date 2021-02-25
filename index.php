@@ -9,6 +9,7 @@ session_start();
 // require the autoload file
 require_once('vendor/autoload.php');
 require_once('model/data-layer.php');
+require_once('model/validation.php');
 
 // create an instance of the base class
 $f3 = Base::instance();
@@ -21,8 +22,11 @@ $f3->route('GET /' , function(){
 });
 
 // Dating -- Create Account -- Personal Information
-$f3->route('GET /create1' , function(){
+$f3->route('GET|POST /create1' , function(){
     // fat free - taking the view page and rendering it in the browser
+
+    // sticky
+
 
     $view = new Template();
     echo $view->render('views/create1.html');
