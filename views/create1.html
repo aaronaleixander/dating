@@ -50,19 +50,28 @@
             <div class="col-md-8">
                 <div class="form-group">
                     <label for="first-name" class="font-weight-bolder">First Name <br>
-                        <input type="text" size="75" class="form-control" id="first-name" name="fname">
+                        <input type="text" size="75" class="form-control" id="first-name" name="fname"> <br>
+                        <check if="{{isset(@errors['fname'])}}">
+                            {{@errors['fname']}}
+                        </check>
                     </label> <br>
                 </div> <!-- form | first-name -->
 
                 <div class="form-group">
                     <label class="font-weight-bolder ">Last Name <br>
-                        <input class="form-control" size="75" type="text" id="last-name" name="lname">
+                        <input class="form-control" size="75" type="text" id="last-name" name="lname"> <br>
+                        <check if="{{isset(@errors['lname'])}}">
+                            {{@errors['lname']}}
+                        </check>
                     </label> <br>
                 </div> <!-- form | last-name -->
 
                 <div class="form-group">
                     <label class="font-weight-bolder">Age <br>
-                        <input class="form-control" size="75" type="text" id="age" name="age">
+                        <input class="form-control" size="75" type="text" id="age" name="age"> <br>
+                        <check if="{{isset(@errors['age'])}}">
+                            {{@errors['age']}}
+                        </check>
                     </label> <br>
                 </div> <!-- form | age -->
 
@@ -83,7 +92,10 @@
 
                 <div class="form-group">
                     <label class="font-weight-bolder">Phone Number <br>
-                        <input class="form-control" size="75" type="text" name="phonenumber">
+                        <input class="form-control" size="75" type="text" name="phonenumber"> <br>
+                        <check if="{{isset(@errors['phonenumber'])}}">
+                            {{@errors['phonenumber']}}
+                        </check>
                     </label> <br>
                 </div> <!-- form | phone number -->
             </div>

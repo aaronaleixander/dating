@@ -18,8 +18,8 @@ function validAge($age){
 /**
  * This function will check that phone is 10 characters, with dashes, and numbers 0 - 9.
  */
-function validPhone($phone){
-    if(preg_match("/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/", $phone)) {
+function validPhone($phonenumber){
+    if(preg_match("/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/", $phonenumber)) {
         return true;
     }
     return false;
