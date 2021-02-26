@@ -45,12 +45,17 @@
 <div class="container mt-5 border rounded">
     <h1 class="mt-5">Personal Information</h1>
     <hr>
-    <form action="create3" method="post">
+    <form action="#" method="post">
         <div class="form-row">
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="email" class="font-weight-bolder">Email <br>
-                        <input type="text" size="60" class="form-control" id="email" name="email">
+                        <input type="text" size="60" class="form-control" id="email" name="email" value="{{@userEmail}}"> <br>
+                            <div class="text-danger">
+                                <check if="{{isset(@errors['email'])}}" class="text-danger">
+                                    {{@errors['email']}}
+                                </check>
+                            </div>
                     </label> <br>
                 </div> <!-- form | email -->
 
@@ -132,7 +137,7 @@
             <div class="col-md-6">
                 <div>
                     <label class="font-weight-bolder">Biography</label> <br>
-                    <textarea name="biography" id="biography" wrap="hard" cols="50" rows="6"></textarea>
+                    <textarea name="biography" id="biography"  wrap="hard" cols="50" rows="6"></textarea>
                 </div>
                 <input class="btn btn-primary mt-5 float-right text-center" type="submit" value="Next>"> <!-- form | submit | button -->
             </div> <!-- form | biography -->

@@ -23,25 +23,29 @@ $f3->route('GET /' , function(){
 
 // Dating -- Create Account -- Personal Information
 $f3->route('GET|POST /create1' , function($f3){
-    // fat free - taking the view page and rendering it in the browser
     var_dump($_POST);
+    // POST ARRAY DATA
+    $userFname = trim($_POST['fname']);
+    $userLname = trim($_POST['lname']);
+    $userAge = trim($_POST['age']);
+    $userPhone = trim($_POST['phonenumber']);
 
     // sticky
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if(validName($_POST['fname'])) {
-            $_SESSION['fname'] = $_POST['fname'];
+        if(validName($userFname)) {
+            $_SESSION['fname'] = $userFname;
         } else {
-            $f3->set('errors["fname"]', "First name required"); // if data is not valid set error message in HIVE
+            $f3->set('errors["fname"]', "First name required - Alphabetic Letters Only"); // if data is not valid set error message in HIVE
         } // first name
 
-        if(validName($_POST['lname'])) {
-            $_SESSION['lname'] = $_POST['lname'];
+        if(validName($userLname)) {
+            $_SESSION['lname'] = $userLname;
         } else {
-            $f3->set('errors["lname"]', "Last name required");
+            $f3->set('errors["lname"]', "Last name required - Alphabetic Letters Only");
         } // last name
 
-        if(validAge($_POST['age'])) {
-            $_SESSION['age'] = $_POST['age'];
+        if(validAge($userAge)) {
+            $_SESSION['age'] = $userAge;
         } else {
             $f3->set('errors["age"]', "Age required - Must be 18+");
         } // age
@@ -50,8 +54,8 @@ $f3->route('GET|POST /create1' , function($f3){
             $_SESSION['gender'] = $_POST['gender'];
         } //gender
 
-        if(validPhone($_POST['phonenumber'])) {
-            $_SESSION['phonenumber'] = $_POST['phonenumber'];
+        if(validPhone($userPhone)) {
+            $_SESSION['phonenumber'] = $userPhone;
         } else{
             $f3->set('errors["phonenumber"]', "Phone must be 000-000-0000 format");
         } // phone number
@@ -62,44 +66,57 @@ $f3->route('GET|POST /create1' , function($f3){
         }
     }
 
+    // Sticky Variables
+    $f3->set('userFname', isset($userFname) ? $userFname : "");
+    $f3->set('userLname', isset($userLname) ? $userLname : "");
+    $f3->set('userAge', isset($userAge) ? $userAge : "");
+    $f3->set('userPhone', isset($userPhone) ? $userPhone : "");
+
     $view = new Template();
     echo $view->render('views/create1.html');
 });
 
 // Dating -- Create Account -- Profile
-$f3->route('GET|POST /create2' , function(){
-    // fat free - taking the view page and rendering it in the browser
+$f3->route('GET|POST /create2' , function($f3){
     //var_dump($_POST);
 
+    $userEmail = $_POST['email'];
 
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (validEmail($userEmail)) {
+            $_SESSION['email'] = $userEmail;
+        } else {
+            $f3->set('errors["email"]', "Email required - @email.com format"); // if data is not valid set error message in HIVE
+        } // email
 
+        if(isset($_POST['state'])){
+            $_SESSION['state'] = $_POST['state'];
+        }
 
+        if(isset($_POST['seeking'])){
+            $_SESSION['seeking'] = $_POST['seeking'];
+        }
 
+        if(isset($_POST['biography'])){
+            $_SESSION['biography'] = $_POST['biography'];
+        }
 
+        // if no errors - > redirect to following sign up page -> create2
+        if(empty($f3->get('errors'))){
+            $f3->reroute('/create3');
+        }
+    }
+
+    // Sticky Variables
+    $f3->set('userEmail', isset($userEmail) ? $userEmail : "");
 
     $view = new Template();
     echo $view->render('views/create2.html');
 });
 
 // Dating -- Create Account -- Interests
-$f3->route('POST /create3' , function($f3){
+$f3->route('GET|POST /create3' , function($f3){
     //var_dump($_POST);
-
-    if(isset($_POST['email'])){
-        $_SESSION['email'] = $_POST['email'];
-    }
-
-    if(isset($_POST['state'])){
-        $_SESSION['state'] = $_POST['state'];
-    }
-
-    if(isset($_POST['seeking'])){
-        $_SESSION['seeking'] = $_POST['seeking'];
-    }
-
-    if(isset($_POST['biography'])){
-        $_SESSION['biography'] = $_POST['biography'];
-    }
 
     // fat free - taking the view page and rendering it in the browser
     // HIVE
@@ -111,8 +128,6 @@ $f3->route('POST /create3' , function($f3){
 
 // Dating -- Create Account -- Summary
 $f3->route('POST /summary' , function(){
-    // fat free - taking the view page and rendering it in the browser
-
     //var_dump($_SESSION);
 
     if(isset($_POST['interests'])){
