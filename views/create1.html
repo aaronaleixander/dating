@@ -51,27 +51,33 @@
                 <div class="form-group">
                     <label for="first-name" class="font-weight-bolder">First Name <br>
                         <input type="text" size="75" class="form-control" id="first-name" name="fname"> <br>
-                        <check if="{{isset(@errors['fname'])}}">
-                            {{@errors['fname']}}
-                        </check>
+                            <div class="text-danger">
+                                <check if="{{isset(@errors['fname'])}}">
+                                    {{@errors['fname']}}
+                                </check>
+                            </div>
                     </label> <br>
                 </div> <!-- form | first-name -->
 
                 <div class="form-group">
                     <label class="font-weight-bolder ">Last Name <br>
                         <input class="form-control" size="75" type="text" id="last-name" name="lname"> <br>
-                        <check if="{{isset(@errors['lname'])}}">
-                            {{@errors['lname']}}
-                        </check>
+                            <div class="text-danger">
+                                <check if="{{isset(@errors['lname'])}}" class="text-danger">
+                                    {{@errors['lname']}}
+                                </check>
+                            </div>
                     </label> <br>
                 </div> <!-- form | last-name -->
 
                 <div class="form-group">
                     <label class="font-weight-bolder">Age <br>
                         <input class="form-control" size="75" type="text" id="age" name="age"> <br>
-                        <check if="{{isset(@errors['age'])}}">
-                            {{@errors['age']}}
-                        </check>
+                            <div class="text-danger">
+                                <check if="{{isset(@errors['age'])}}" class="text-danger">
+                                    {{@errors['age']}}
+                                </check>
+                            </div>
                     </label> <br>
                 </div> <!-- form | age -->
 
@@ -93,9 +99,11 @@
                 <div class="form-group">
                     <label class="font-weight-bolder">Phone Number <br>
                         <input class="form-control" size="75" type="text" name="phonenumber"> <br>
-                        <check if="{{isset(@errors['phonenumber'])}}">
-                            {{@errors['phonenumber']}}
-                        </check>
+                            <div class="text-danger">
+                                <check if="{{isset(@errors['phonenumber'])}}" class="text-danger">
+                                    {{@errors['phonenumber']}}
+                                </check>
+                            </div>
                     </label> <br>
                 </div> <!-- form | phone number -->
             </div>
