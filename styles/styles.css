@@ -1,6 +1,9 @@
 p {
     font-size: 20px;
 }
+i {
+    font-size: 20px;
+}
 
 mark.purple {
     color: #d886eb;
@@ -20,4 +23,10 @@ mark.lightblue {
 mark.blue {
     color: #2c62de;
     background: none;
+}
+.jumbotron{
+    background-color: white;
+}
+.btn{
+    margin-left: auto;
 }
