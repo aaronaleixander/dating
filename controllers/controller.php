@@ -177,9 +177,11 @@ class Controller
         var_dump($_SESSION);
         $account = $_SESSION['account'];
 
-        $this->_f3->set('firstName', $account->getFname());
+        if(isset($_POST['interests'])){
+            $this->_f3->set('interests', implode(", ",$_POST['interests']));
+        }
 
-        $this->_f3->set('interests', implode(", ",$_POST['interests']));
+
         //$this->_f3->set('interests', implode(", ",$_POST['interests']));
 
         $view = new Template();
