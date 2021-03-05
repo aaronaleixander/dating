@@ -11,6 +11,8 @@ class Member{
     private $_state;
     private $_seeking;
     private $_bio;
+    private $_isPremium;
+
 
     /**
      * Member constructor.
@@ -19,23 +21,35 @@ class Member{
      * @param $_age
      * @param $_gender
      * @param $_phone
-     * @param $_email
-     * @param $_state
-     * @param $_seeking
-     * @param $_bio
+     * @param $_isPremium
      */
-    public function __construct($_fname, $_lname, $_age, $_gender, $_phone, $_email, $_state, $_seeking, $_bio)
+    public function __construct($_fname, $_lname, $_age, $_gender, $_phone, $_isPremium = false)
     {
         $this->_fname = $_fname;
         $this->_lname = $_lname;
         $this->_age = $_age;
         $this->_gender = $_gender;
         $this->_phone = $_phone;
-        $this->_email = $_email;
-        $this->_state = $_state;
-        $this->_seeking = $_seeking;
-        $this->_bio = $_bio;
+        $this->_isPremium = $_isPremium;
     }
+
+
+    /**
+     * @return mixed
+     */
+    public function getIsPremium()
+    {
+        return $this->_isPremium;
+    }
+
+    /**
+     * @param mixed $isPremium
+     */
+    public function setIsPremium($isPremium)
+    {
+        $this->_isPremium = $isPremium;
+    }
+
     /**
      * @return mixed
      */

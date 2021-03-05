@@ -50,7 +50,7 @@
             <div class="col-md-8">
                 <div class="form-group">
                     <label for="first-name" class="font-weight-bolder">First Name <br>
-                        <input type="text" size="75" class="form-control" id="first-name" name="fname" value="{{@userFname}}"> <br>
+                        <input type="text" size="75" class="form-control" id="fname" name="fname" value="{{@userFname}}"> <br>
                             <div class="text-danger">
                                 <check if="{{isset(@errors['fname'])}}">
                                     {{@errors['fname']}}
@@ -61,7 +61,7 @@
 
                 <div class="form-group">
                     <label class="font-weight-bolder ">Last Name <br>
-                        <input class="form-control" size="75" type="text" id="last-name" name="lname" value="{{@userLname}}"> <br>
+                        <input class="form-control" size="75" type="text" id="lname" name="lname" value="{{@userLname}}"> <br>
                             <div class="text-danger">
                                 <check if="{{isset(@errors['lname'])}}" class="text-danger">
                                     {{@errors['lname']}}
