@@ -1,6 +1,7 @@
 <?php
 
-class Member{
+class Member
+{
     // CLASS FIELD
     private $_fname;
     private $_lname;
@@ -35,7 +36,7 @@ class Member{
 
 
     /**
-     * @return mixed
+     * @return bool
      */
     public function getIsPremium()
     {

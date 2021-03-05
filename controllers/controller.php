@@ -15,7 +15,8 @@ class Controller
         echo $view->render('views/home.html');
     }
 
-    function create1($f3){
+    function create1(){
+        global $validator;
         // sticky
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
             // POST ARRAY DATA
@@ -26,27 +27,27 @@ class Controller
             // TODO: check if user wants to be a premium account (if(isset post checkbox))
             $isPremium = $_POST['premium'];
 
-            if(isset($_POST[$isPremium])) {
-                $account = new Premium("", "", "", "", "", true, [], []);
-                if (validName($userFname)) {
+            if(isset($isPremium)) {
+                $account = new Premium("", "", "", "", "");
+                if ($validator->validName($userFname)) {
                     //$_SESSION['fname'] = $userFname;
                     $account->setFname($userFname);
                 } else {
-                    $f3->set('errors["fname"]', "First name required - Alphabetic Letters Only"); // if data is not valid set error message in HIVE
+                    $this->_f3->set('errors["fname"]', "First name required - Alphabetic Letters Only"); // if data is not valid set error message in HIVE
                 } // first name
 
-                if (validName($userLname)) {
+                if ($validator->validName($userLname)) {
                     //$_SESSION['lname'] = $userLname;
                     $account->setLname($userLname);
                 } else {
-                    $f3->set('errors["lname"]', "Last name required - Alphabetic Letters Only");
+                    $this->_f3->set('errors["lname"]', "Last name required - Alphabetic Letters Only");
                 } // last name
 
-                if (validAge($userAge)) {
+                if ($validator->validAge($userAge)) {
                     //$_SESSION['age'] = $userAge;
                     $account->setAge($userAge);
                 } else {
-                    $f3->set('errors["age"]', "Age required - Must be 18+");
+                    $this->_f3->set('errors["age"]', "Age required - Must be 18+");
                 } // age
 
                 if (isset($_POST['gender'])) {
@@ -54,77 +55,78 @@ class Controller
                     $account->setGender($_POST['gender']);
                 }
 
-                if (validPhone($userPhone)) {
+                if ($validator->validPhone($userPhone)) {
                     //$_SESSION['phonenumber'] = $userPhone;
                     $account->setPhone($userPhone);
                 } else {
-                    $f3->set('errors["phonenumber"]', "Phone must be 000-000-0000 format");
+                    $this->_f3->set('errors["phonenumber"]', "Phone must be 000-000-0000 format");
                 } // phone number
 
-                if (empty($f3->get('errors'))) {
+                if (empty($this->_f3->get('errors'))) {
                     $_SESSION['account'] = $account;
-                    $f3->reroute('/create2');
+                    $this->_f3->reroute('/create2');
                 }
 
             } else {
-                $account = new Member("", "", "", "", "", false);
+                $account = new Member("", "", "", "", "");
 
-                if (validName($userFname)) {
+                if ($validator->validName($userFname)) {
                     $account->setFname($userFname);
                 } else {
-                    $f3->set('errors["fname"]', "First name required - Alphabetic Letters Only"); // if data is not valid set error message in HIVE
+                    $this->_f3->set('errors["fname"]', "First name required - Alphabetic Letters Only"); // if data is not valid set error message in HIVE
                 } // first name
 
-                if (validName($userLname)) {
+                if ($validator->validName($userLname)) {
                     $account->setLname($userLname);
                 } else {
-                    $f3->set('errors["lname"]', "Last name required - Alphabetic Letters Only");
+                    $this->_f3->set('errors["lname"]', "Last name required - Alphabetic Letters Only");
                 } // last name
 
-                if(validAge($userAge)){
+                if($validator->validAge($userAge)){
                     $account->setAge($userAge);
                 } else {
-                    $f3->set('errors["age"]', "Age required - Must be 18+");
+                    $this->_f3->set('errors["age"]', "Age required - Must be 18+");
                 } // age
 
                 if(isset($_POST['gender'])){
                     $account->setGender($_POST['gender']);
                 } //gender
 
-                if(validPhone($userPhone)){
+                if($validator->validPhone($userPhone)){
                     $account->setPhone($userPhone);
                 } else {
-                    $f3->set('errors["phonenumber"]', "Phone must be 000-000-0000 format");
+                    $this->_f3->set('errors["phonenumber"]', "Phone must be 000-000-0000 format");
                 } // phone number
 
-                if (empty($f3->get('errors'))){
+                if (empty($this->_f3->get('errors'))){
                     $_SESSION['account'] = $account;
-                    $f3->reroute('/create2');
+                    $this->_f3->reroute('/create2');
                 }
             }
         }
 
         // Sticky Variables
-        $f3->set('userFname', isset($userFname) ? $userFname : "");
-        $f3->set('userLname', isset($userLname) ? $userLname : "");
-        $f3->set('userAge', isset($userAge) ? $userAge : "");
-        $f3->set('userPhone', isset($userPhone) ? $userPhone : "");
+        $this->_f3->set('userFname', isset($userFname) ? $userFname : "");
+        $this->_f3->set('userLname', isset($userLname) ? $userLname : "");
+        $this->_f3->set('userAge', isset($userAge) ? $userAge : "");
+        $this->_f3->set('userPhone', isset($userPhone) ? $userPhone : "");
 
         $view = new Template();
         echo $view->render('views/create1.html');
     }
 
-    function create2($f3){
+    function create2(){
+        global $validator;
         var_dump($_SESSION['account']);
 
         $account = $_SESSION['account'];
 
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $userEmail = $_POST['email'];
-            if (validEmail($userEmail)) {
+            if ($validator->validEmail($userEmail)) {
                 $_SESSION['account']->setEmail($userEmail);
             } else {
-                $f3->set('errors["email"]', "Email required - @email.com format"); // if data is not valid set error message in HIVE
+                $this->_f3->set('errors["email"]', "Email required - @email.com format"); // if data is not valid set error message in HIVE
             } // email
 
             if(isset($_POST['state'])){
@@ -140,28 +142,33 @@ class Controller
             }
 
             // if no errors - > redirect to following sign up page -> create2
-            if(empty($f3->get('errors')) && $account->getIsPremium() == true){
-                $f3->reroute('/create3');
+            if(empty($this->_f3->get('errors')) && $account->getIsPremium()){
+                $this->_f3->reroute('/create3');
             } else {
-                $f3->reroute('/summary');
+                $this->_f3->reroute('/summary');
             }
         }
 
         // Sticky Variables
-        $f3->set('userEmail', isset($userEmail) ? $userEmail : "");
+        $this->_f3->set('userEmail', isset($userEmail) ? $userEmail : "");
 
         $view = new Template();
         echo $view->render('views/create2.html');
     }
 
-    function create3($f3){
+    function create3(){
+        global $dataLayer;
         //var_dump($_POST);
-        // TODO: only premium members fill out interests
-
+        // TODO: only premium members fill out interest
         // fat free - taking the view page and rendering it in the browser
         // HIVE
-        $f3->set('indoor', getIndoorInterests());
-        $f3->set('outdoor', getOutdoorInterests());
+        $this->_f3->set('indoor', $dataLayer->getIndoorInterests());
+        $this->_f3->set('outdoor', $dataLayer->getOutdoorInterests());
+
+        if(isset($_POST['interests'])){
+            $_SESSION['account'] = implode(", ",$_POST['interests']);
+        }
+
         $view = new Template();
         echo $view->render('views/create3.html');
     }
@@ -169,9 +176,11 @@ class Controller
     function summary(){
         var_dump($_SESSION);
         $account = $_SESSION['account'];
-        if(isset($_POST['interests'])){
-            $_SESSION['interests'] = implode(", ",$_POST['interests']);
-        }
+
+        $this->_f3->set('firstName', $account->getFname());
+
+        $this->_f3->set('interests', implode(", ",$_POST['interests']));
+        //$this->_f3->set('interests', implode(", ",$_POST['interests']));
 
         $view = new Template();
         echo $view->render('views/summary.html');

@@ -5,8 +5,6 @@ error_reporting(E_ALL);
 
 // require the autoload file
 require_once('vendor/autoload.php');
-require_once('model/data-layer.php');
-require_once('model/validation.php');
 
 // session
 session_start();
@@ -14,6 +12,8 @@ session_start();
 // create an instance of the base class
 $f3 = Base::instance();
 $controller = new Controller($f3);
+$dataLayer = new DataLayer();
+$validator = new Validate();
 
 
 // Define a default route
