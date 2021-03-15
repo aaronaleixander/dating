@@ -13,8 +13,8 @@ session_start();
 // create an instance of the base class
 $f3 = Base::instance();
 $controller = new Controller($f3);
-$dataLayer = new DataLayer();
-$validator = new Validate();
+$dataLayer = new DataLayer($dbh);
+$validator = new Validate($dataLayer);
 
 
 // Define a default route

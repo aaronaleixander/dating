@@ -17,14 +17,15 @@ class Controller
 
     function create1(){
         global $validator;
+
         // sticky
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
             // POST ARRAY DATA
             $userFname = trim($_POST['fname']);
             $userLname = trim($_POST['lname']);
             $userAge = trim($_POST['age']);
+            $userGender = $_POST['gender'];
             $userPhone = trim($_POST['phonenumber']);
-            // TODO: check if user wants to be a premium account (if(isset post checkbox))
             $isPremium = $_POST['premium'];
 
             if(isset($isPremium)) {
@@ -50,9 +51,9 @@ class Controller
                     $this->_f3->set('errors["age"]', "Age required - Must be 18+");
                 } // age
 
-                if (isset($_POST['gender'])) {
+                if (isset($userGender)) {
                     //$_SESSION['gender'] = $_POST['gender'];
-                    $account->setGender($_POST['gender']);
+                    $account->setGender($userGender);
                 }
 
                 if ($validator->validPhone($userPhone)) {
@@ -117,8 +118,7 @@ class Controller
 
     function create2(){
         global $validator;
-        var_dump($_SESSION['account']);
-
+        //var_dump($_SESSION['account']);
         $account = $_SESSION['account'];
 
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -158,6 +158,7 @@ class Controller
 
     function create3(){
         global $dataLayer;
+
         //var_dump($_POST);
         // TODO: only premium members fill out interest
         // fat free - taking the view page and rendering it in the browser
@@ -166,7 +167,9 @@ class Controller
         $this->_f3->set('outdoor', $dataLayer->getOutdoorInterests());
 
         if(isset($_POST['interests'])){
-            $_SESSION['account'] = implode(", ",$_POST['interests']);
+            //$_SESSION['account'] = implode(", ",$_POST['interests']);
+            $interestString = implode(", ", $_POST['interests']);
+            $_SESSION['account']->setInterests($interestString);
         }
 
         $view = new Template();
@@ -174,19 +177,20 @@ class Controller
     }
 
     function summary(){
-        var_dump($_SESSION);
-        $account = $_SESSION['account'];
+        global $dataLayer;
+        global $member;
+        //var_dump($_SESSION);
+        $member = $_SESSION['account'];
 
         if(isset($_POST['interests'])){
             $this->_f3->set('interests', implode(", ",$_POST['interests']));
+            $interestString = implode(", ", $_POST['interests']);
+            $_SESSION['account']->setInterests($interestString);
         }
-
-
-        //$this->_f3->set('interests', implode(", ",$_POST['interests']));
+        $dataLayer->insertMember($member);
 
         $view = new Template();
         echo $view->render('views/summary.html');
-
         session_destroy();
     }
 

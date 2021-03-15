@@ -12,6 +12,7 @@ class Member
     private $_state;
     private $_seeking;
     private $_bio;
+    private $_interests;
     private $_isPremium;
 
 
@@ -34,6 +35,21 @@ class Member
         $this->_isPremium = $_isPremium;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getInterests()
+    {
+        return $this->_interests;
+    }
+
+    /**
+     * @param mixed $interests
+     */
+    public function setInterests($interests)
+    {
+        $this->_interests = $interests;
+    }
 
     /**
      * @return bool

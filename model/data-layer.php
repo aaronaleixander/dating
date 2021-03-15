@@ -15,7 +15,7 @@ class DataLayer
      * This function will insert a new dating member into the database
      * @return string[] $result the member that was added to the database
      */
-    function insertMember(){
+    function insertMember($member){
         //Define the query
         $sql = "INSERT INTO member(fname, lname, age, gender, phone, email, state, seeking, bio, premium, interests) 
 	            VALUES (:fname, :lname, :age, :gender, :phone, :email, :state, :seeking, :bio, :premium, :interests)";
@@ -33,7 +33,7 @@ class DataLayer
         $statement->bindParam(':state', $member->getState(), PDO::PARAM_STR);
         $statement->bindParam(':seeking', $member->getSeeking(), PDO::PARAM_STR);
         $statement->bindParam(':bio', $member->getBio(), PDO::PARAM_STR);
-        $statement->bindParam(':premium', $member->getIsPremium(), PDO::PARAM_STR);
+        $statement->bindParam(':premium', $member->getIsPremium(), PDO::PARAM_BOOL);
         $statement->bindParam(':interests', $member->getInterests(), PDO::PARAM_STR);
 
 
@@ -70,7 +70,19 @@ class DataLayer
      * @return string[] $result the member that was added to the database
      */
     function getMember($member_id){
+        //Define the query
+        $sql = "SELECT * FROM member WHERE member_id = $member_id";
 
+        //Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //Execute
+        $statement->execute();
+
+        //Get the results
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        //var_dump($result);
+        return $result;
     }
 
     /**

@@ -6,8 +6,8 @@ class Validate
 {
     private $_dataLayer;
 
-    public function __construct(){
-        $this->_dataLayer = new DataLayer();
+    public function __construct($dataLayer){
+        $this->_dataLayer = $dataLayer;
     }
     function validName($name)
     {
