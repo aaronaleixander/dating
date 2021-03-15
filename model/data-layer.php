@@ -50,7 +50,7 @@ class DataLayer
      */
     function getMembers(){
         //Define the query
-        $sql = "SELECT * FROM member";
+        $sql = "SELECT * FROM member ORDER BY lname";
 
         //Prepare the statement
         $statement = $this->_dbh->prepare($sql);
@@ -70,7 +70,7 @@ class DataLayer
      */
     function getMember($member_id){
         //Define the query
-        $sql = "SELECT * FROM member WHERE member_id = $member_id";
+        $sql = "SELECT * FROM member WHERE member_id = :member_id";
 
         //Prepare the statement
         $statement = $this->_dbh->prepare($sql);
@@ -90,7 +90,18 @@ class DataLayer
      * @return string[] $result the interests of premium member
      */
     function getInterests($member_id){
+        //Define the query
+        $sql = "SELECT interests FROM member WHERE member_id = :member_id";
 
+        //Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //Execute
+        $statement->execute();
+
+        //Get the results
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
 
     function getIndoorInterests(){
