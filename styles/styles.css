@@ -30,3 +30,6 @@ mark.blue {
 .btn{
     margin-left: auto;
 }
+td {
+    padding:0 15px;
+}

@@ -62,7 +62,20 @@
             </tr>
             </thead>
             <tbody>
-
+                <repeat group="{{@members}}" value="{{@member}}">
+                    <tr>
+                        <td>{{@member['member_id']}}</td>
+                        <td>{{@member['fname']}} {{@member['lname']}}</td>
+                        <td>{{@member['age']}}</td>
+                        <td>{{@member['phone']}}</td>
+                        <td>{{@member['email']}}</td>
+                        <td>{{@member['state']}}</td>
+                        <td>{{@member['gender']}}</td>
+                        <td>{{@member['seeking']}}</td>
+                        <td>{{@member['premium']}}</td>
+                        <td>{{@member['interests']}}</td>
+                    </tr>
+                </repeat>
             </tbody>
         </table>
     </div>

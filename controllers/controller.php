@@ -191,7 +191,8 @@ class Controller
 
     function admin(){
         global $dataLayer;
-        echo $dataLayer->getMembers();
+        $members = $dataLayer->getMembers();
+        $this->_f3->set('members', $members);
 
 
         $view = new Template();
