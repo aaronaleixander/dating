@@ -47,5 +47,11 @@ $f3->route('GET|POST /summary' , function(){
     $controller->summary();
 });
 
+// Dating -- Create Account -- Summary
+$f3->route('GET|POST /admin' , function(){
+    global $controller;
+    $controller->admin();
+});
+
 // Run fat free
 $f3->run();

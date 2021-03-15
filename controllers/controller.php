@@ -159,15 +159,10 @@ class Controller
     function create3(){
         global $dataLayer;
 
-        //var_dump($_POST);
-        // TODO: only premium members fill out interest
-        // fat free - taking the view page and rendering it in the browser
-        // HIVE
         $this->_f3->set('indoor', $dataLayer->getIndoorInterests());
         $this->_f3->set('outdoor', $dataLayer->getOutdoorInterests());
 
         if(isset($_POST['interests'])){
-            //$_SESSION['account'] = implode(", ",$_POST['interests']);
             $interestString = implode(", ", $_POST['interests']);
             $_SESSION['account']->setInterests($interestString);
         }
@@ -192,6 +187,15 @@ class Controller
         $view = new Template();
         echo $view->render('views/summary.html');
         session_destroy();
+    }
+
+    function admin(){
+        global $dataLayer;
+        echo $dataLayer->getMembers();
+
+
+        $view = new Template();
+        echo $view->render('views/admin.html');
     }
 
 }

@@ -60,6 +60,12 @@ class DataLayer
 
         //Get the results
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($result as $row) {
+            echo "<p>" . $row['fname'] . ", " . $row['age'] . ", " . $row['gender']
+                . ", " . $row['phone'] . ", " . $row['email'] .  ", " . $row['state']
+                . ", " . $row['seeking'] . ", " . $row['bio'] . ", " . $row['premium']
+                . ", " . $row['interests'] . "</p>";
+        }
         //var_dump($result);
         return $result;
     }
